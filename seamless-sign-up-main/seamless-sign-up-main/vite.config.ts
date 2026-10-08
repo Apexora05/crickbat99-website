@@ -12,4 +12,11 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    server: {
+      // Dev server runs behind the preview proxy, which forwards arbitrary
+      // <id>.preview.* hosts — allow them so page loads aren't blocked.
+      allowedHosts: true,
+    },
+  },
 });
