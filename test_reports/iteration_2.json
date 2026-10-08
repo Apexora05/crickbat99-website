@@ -1,0 +1,24 @@
+{
+  "summary": "Regression retest of iteration_1 critical hydration crash. Verified in a real browser (Playwright) that homepage and 4 new informational pages (/cricket-guide, /faq, /contact-us, /responsible-play) render fully after hydration with NO 'This page didn't load' CatchBoundary. The Supabase stub fix in src/integrations/supabase/client.ts now logs a benign console error instead of throwing, so useEffect in SiteHeader no longer crashes the tree. Homepage shows CRICBET99 header, Login/Sign Up buttons, 'Most Played Games', 'Why Choose Cricbet99', and Information/Guides footer column. Cricket guide shows gold 'Cricket Guide' H1 and all required content cards (Introduction to Cricket, Cricket Formats, Match Structure). /api/health returns {status:ok}. All routes return HTTP 200. Mobile 390px overflow/hamburger check at /cricket-guide could not complete because Cloudflare bot verification challenged the headless browser mid-run (unrelated infra protection), but desktop rendering of /cricket-guide was confirmed clean.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "All pages (console only)", "issues": ["Benign console.error '[Supabase] Missing Supabase environment variable(s)...' is logged on every page load. Expected per fix (preview has no Supabase env vars). Consider demoting to console.warn to reduce noise and avoid tripping error-monitoring tools in production dashboards."]}
+    ]
+  },
+  "test_report_links": ["/app/test_reports/iteration_2.json"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Supabase stub logs via console.error on every mount; prefer console.warn for an expected/handled missing-env state so real errors stay distinguishable.",
+    "Mobile overflow could not be re-verified in this run due to Cloudflare bot challenge; if main agent wants a mobile retest, it is safe to self-verify by opening /cricket-guide at 390px."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100%", "frontend": "100% (desktop); mobile overflow check blocked by Cloudflare challenge, not an app bug"},
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Preview URL: https://65f6c67f-c719-4bc9-ae5f-eb798c06702b.preview.emergentagent.com. Supabase env vars are intentionally absent; the client stub keeps the app running as logged-out. Do not attempt real login. Cloudflare occasionally rate-limits headless Playwright on this preview after many consecutive requests — add waits between route hits or run routes in smaller batches. Backend /api/health is healthy. Supervisor services (frontend on 3000 via /app/frontend/start.sh, backend on 8001) are running.",
+  "rca of the issue": "Iteration 1 bug: createSupabaseClient() threw when VITE_SUPABASE_URL/VITE_SUPABASE_PUBLISHABLE_KEY were missing. SiteHeader's useEffect called supabase.auth.getSession() during hydration, the throw propagated up the React tree, and TanStack Start's CatchBoundary rendered the brown 'This page didn't load / Try again / Go home' screen on every route. Fix in src/integrations/supabase/client.ts: when env vars are absent, return a safe stub whose getSession resolves {data:{session:null}} and onAuthStateChange returns a no-op subscription — so no exception is thrown and hydration completes. When env vars are present (production), the real @supabase/supabase-js client is created unchanged. Verified: real browser render of homepage, /cricket-guide, /faq, /contact-us, /responsible-play — all show full content, no error boundary, header 'CRICBET99' present on all pages."
+}

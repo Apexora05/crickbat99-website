@@ -43,5 +43,11 @@ Import the existing GitHub repository `crickbat99-website` (main branch) as the 
 - Optional: deploy/publish the updated site (project deploys via Vercel/`vercel.json`, output `.output/public`).
 - Optional: add short JSON-LD `Article` schema to the guide pages if richer SEO is wanted.
 
+## Preview/Deployment Fix (2026-10-08)
+- **Bug**: preview URL returned Cloudflare 502. Root cause: Emergent supervisor expects `frontend` (port 3000, `/app/frontend`) and `backend` (port 8001, `/app/backend`) services, but this workspace only contained the nested TanStack project — both services were FATAL.
+- **Fix**: created `/app/frontend/{package.json,start.sh}` adapter (runs `npx vite dev --host 0.0.0.0 --port 3000` from the TanStack project) and `/app/backend/server.py` (minimal FastAPI `/api/health`). Added `vite.server.allowedHosts=true` in `vite.config.ts` (Vite dev blocked the preview proxy host with 403).
+- **Second bug found by testing**: all pages HTTP 200 but hydration crashed into "This page didn't load" because the Supabase client Proxy threw on missing env vars. Fixed in `src/integrations/supabase/client.ts`: missing env now logs a warning and returns a safe logged-out stub (production with env vars unchanged).
+- Verified by testing agent iteration_2: all routes 200 externally, real-browser rendering confirmed on homepage + 4 new pages, `/api/health` OK, build + tsc pass.
+
 ## Backlog
 - P2: Any further landing page edits, SEO tweaks, or new sections the user requests.

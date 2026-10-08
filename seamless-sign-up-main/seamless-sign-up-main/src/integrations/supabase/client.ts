@@ -39,7 +39,7 @@ function createSupabaseClient() {
       ...(!SUPABASE_PUBLISHABLE_KEY ? ['SUPABASE_PUBLISHABLE_KEY'] : []),
     ];
     const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Connect Supabase in Lovable Cloud.`;
-    console.error(`[Supabase] ${message}`);
+    console.warn(`[Supabase] ${message}`);
     // Don't throw — a thrown error here bubbles into the React error boundary and
     // blanks every page. Return a logged-out stub so public pages still render.
     return createMissingEnvStub(message);
