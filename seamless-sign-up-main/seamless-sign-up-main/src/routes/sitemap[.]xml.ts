@@ -15,6 +15,18 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/" },
           { path: "/online-cricket-id" },
 
+          // Informational guide pages
+          { path: "/about-us" },
+          { path: "/how-it-works" },
+          { path: "/cricket-guide" },
+          { path: "/football-guide" },
+          { path: "/teen-patti-guide" },
+          { path: "/login-help" },
+          { path: "/wallet-guide" },
+          { path: "/responsible-play" },
+          { path: "/faq" },
+          { path: "/contact-us" },
+
           // Public game pages
           { path: "/games/ipl-live-betting" },
           { path: "/games/football" },

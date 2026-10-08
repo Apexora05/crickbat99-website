@@ -11,8 +11,18 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ContactUsRouteImport } from './routes/contact-us'
+import { Route as CricketGuideRouteImport } from './routes/cricket-guide'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as FootballGuideRouteImport } from './routes/football-guide'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as LoginHelpRouteImport } from './routes/login-help'
+import { Route as ResponsiblePlayRouteImport } from './routes/responsible-play'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TeenPattiGuideRouteImport } from './routes/teen-patti-guide'
+import { Route as WalletGuideRouteImport } from './routes/wallet-guide'
 import { Route as AuthenticatedWalletRouteImport } from './routes/_authenticated/wallet'
 import { Route as GamesSlugRouteImport } from './routes/games.$slug'
 import { Route as OnlineCricketIdIndexRouteImport } from './routes/online-cricket-id.index'
@@ -27,14 +37,64 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutUsRoute = AboutUsRouteImport.update({
+  id: '/about-us',
+  path: '/about-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactUsRoute = ContactUsRouteImport.update({
+  id: '/contact-us',
+  path: '/contact-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CricketGuideRoute = CricketGuideRouteImport.update({
+  id: '/cricket-guide',
+  path: '/cricket-guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FootballGuideRoute = FootballGuideRouteImport.update({
+  id: '/football-guide',
+  path: '/football-guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginHelpRoute = LoginHelpRouteImport.update({
+  id: '/login-help',
+  path: '/login-help',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResponsiblePlayRoute = ResponsiblePlayRouteImport.update({
+  id: '/responsible-play',
+  path: '/responsible-play',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeenPattiGuideRoute = TeenPattiGuideRouteImport.update({
+  id: '/teen-patti-guide',
+  path: '/teen-patti-guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WalletGuideRoute = WalletGuideRouteImport.update({
+  id: '/wallet-guide',
+  path: '/wallet-guide',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedWalletRoute = AuthenticatedWalletRouteImport.update({
@@ -60,8 +120,18 @@ const OnlineCricketIdCityRoute = OnlineCricketIdCityRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
   '/auth': typeof AuthRoute
+  '/contact-us': typeof ContactUsRoute
+  '/cricket-guide': typeof CricketGuideRoute
+  '/faq': typeof FaqRoute
+  '/football-guide': typeof FootballGuideRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/login-help': typeof LoginHelpRoute
+  '/responsible-play': typeof ResponsiblePlayRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/teen-patti-guide': typeof TeenPattiGuideRoute
+  '/wallet-guide': typeof WalletGuideRoute
   '/wallet': typeof AuthenticatedWalletRoute
   '/games/$slug': typeof GamesSlugRoute
   '/online-cricket-id/$city': typeof OnlineCricketIdCityRoute
@@ -69,8 +139,18 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
   '/auth': typeof AuthRoute
+  '/contact-us': typeof ContactUsRoute
+  '/cricket-guide': typeof CricketGuideRoute
+  '/faq': typeof FaqRoute
+  '/football-guide': typeof FootballGuideRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/login-help': typeof LoginHelpRoute
+  '/responsible-play': typeof ResponsiblePlayRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/teen-patti-guide': typeof TeenPattiGuideRoute
+  '/wallet-guide': typeof WalletGuideRoute
   '/wallet': typeof AuthenticatedWalletRoute
   '/games/$slug': typeof GamesSlugRoute
   '/online-cricket-id/$city': typeof OnlineCricketIdCityRoute
@@ -80,8 +160,18 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/about-us': typeof AboutUsRoute
   '/auth': typeof AuthRoute
+  '/contact-us': typeof ContactUsRoute
+  '/cricket-guide': typeof CricketGuideRoute
+  '/faq': typeof FaqRoute
+  '/football-guide': typeof FootballGuideRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/login-help': typeof LoginHelpRoute
+  '/responsible-play': typeof ResponsiblePlayRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/teen-patti-guide': typeof TeenPattiGuideRoute
+  '/wallet-guide': typeof WalletGuideRoute
   '/_authenticated/wallet': typeof AuthenticatedWalletRoute
   '/games/$slug': typeof GamesSlugRoute
   '/online-cricket-id/$city': typeof OnlineCricketIdCityRoute
@@ -91,8 +181,18 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about-us'
     | '/auth'
+    | '/contact-us'
+    | '/cricket-guide'
+    | '/faq'
+    | '/football-guide'
+    | '/how-it-works'
+    | '/login-help'
+    | '/responsible-play'
     | '/sitemap.xml'
+    | '/teen-patti-guide'
+    | '/wallet-guide'
     | '/wallet'
     | '/games/$slug'
     | '/online-cricket-id/$city'
@@ -100,8 +200,18 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about-us'
     | '/auth'
+    | '/contact-us'
+    | '/cricket-guide'
+    | '/faq'
+    | '/football-guide'
+    | '/how-it-works'
+    | '/login-help'
+    | '/responsible-play'
     | '/sitemap.xml'
+    | '/teen-patti-guide'
+    | '/wallet-guide'
     | '/wallet'
     | '/games/$slug'
     | '/online-cricket-id/$city'
@@ -110,8 +220,18 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/about-us'
     | '/auth'
+    | '/contact-us'
+    | '/cricket-guide'
+    | '/faq'
+    | '/football-guide'
+    | '/how-it-works'
+    | '/login-help'
+    | '/responsible-play'
     | '/sitemap.xml'
+    | '/teen-patti-guide'
+    | '/wallet-guide'
     | '/_authenticated/wallet'
     | '/games/$slug'
     | '/online-cricket-id/$city'
@@ -121,8 +241,18 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AboutUsRoute: typeof AboutUsRoute
   AuthRoute: typeof AuthRoute
+  ContactUsRoute: typeof ContactUsRoute
+  CricketGuideRoute: typeof CricketGuideRoute
+  FaqRoute: typeof FaqRoute
+  FootballGuideRoute: typeof FootballGuideRoute
+  HowItWorksRoute: typeof HowItWorksRoute
+  LoginHelpRoute: typeof LoginHelpRoute
+  ResponsiblePlayRoute: typeof ResponsiblePlayRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TeenPattiGuideRoute: typeof TeenPattiGuideRoute
+  WalletGuideRoute: typeof WalletGuideRoute
   GamesSlugRoute: typeof GamesSlugRoute
   OnlineCricketIdCityRoute: typeof OnlineCricketIdCityRoute
   OnlineCricketIdIndexRoute: typeof OnlineCricketIdIndexRoute
@@ -144,6 +274,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about-us': {
+      id: '/about-us'
+      path: '/about-us'
+      fullPath: '/about-us'
+      preLoaderRoute: typeof AboutUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth': {
       id: '/auth'
       path: '/auth'
@@ -151,11 +288,74 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact-us': {
+      id: '/contact-us'
+      path: '/contact-us'
+      fullPath: '/contact-us'
+      preLoaderRoute: typeof ContactUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cricket-guide': {
+      id: '/cricket-guide'
+      path: '/cricket-guide'
+      fullPath: '/cricket-guide'
+      preLoaderRoute: typeof CricketGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/football-guide': {
+      id: '/football-guide'
+      path: '/football-guide'
+      fullPath: '/football-guide'
+      preLoaderRoute: typeof FootballGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login-help': {
+      id: '/login-help'
+      path: '/login-help'
+      fullPath: '/login-help'
+      preLoaderRoute: typeof LoginHelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/responsible-play': {
+      id: '/responsible-play'
+      path: '/responsible-play'
+      fullPath: '/responsible-play'
+      preLoaderRoute: typeof ResponsiblePlayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/teen-patti-guide': {
+      id: '/teen-patti-guide'
+      path: '/teen-patti-guide'
+      fullPath: '/teen-patti-guide'
+      preLoaderRoute: typeof TeenPattiGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wallet-guide': {
+      id: '/wallet-guide'
+      path: '/wallet-guide'
+      fullPath: '/wallet-guide'
+      preLoaderRoute: typeof WalletGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/wallet': {
@@ -203,8 +403,18 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AboutUsRoute: AboutUsRoute,
   AuthRoute: AuthRoute,
+  ContactUsRoute: ContactUsRoute,
+  CricketGuideRoute: CricketGuideRoute,
+  FaqRoute: FaqRoute,
+  FootballGuideRoute: FootballGuideRoute,
+  HowItWorksRoute: HowItWorksRoute,
+  LoginHelpRoute: LoginHelpRoute,
+  ResponsiblePlayRoute: ResponsiblePlayRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TeenPattiGuideRoute: TeenPattiGuideRoute,
+  WalletGuideRoute: WalletGuideRoute,
   GamesSlugRoute: GamesSlugRoute,
   OnlineCricketIdCityRoute: OnlineCricketIdCityRoute,
   OnlineCricketIdIndexRoute: OnlineCricketIdIndexRoute,
