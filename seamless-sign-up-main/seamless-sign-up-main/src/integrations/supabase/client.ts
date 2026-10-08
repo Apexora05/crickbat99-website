@@ -40,7 +40,9 @@ function createSupabaseClient() {
     ];
     const message = `Missing Supabase environment variable(s): ${missing.join(', ')}. Connect Supabase in Lovable Cloud.`;
     console.error(`[Supabase] ${message}`);
-    throw new Error(message);
+    // Don't throw — a thrown error here bubbles into the React error boundary and
+    // blanks every page. Return a logged-out stub so public pages still render.
+    return createMissingEnvStub(message);
   }
 
   return createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
@@ -53,6 +55,25 @@ function createSupabaseClient() {
       autoRefreshToken: true,
     }
   });
+}
+
+function createMissingEnvStub(message: string) {
+  const error = new Error(message);
+  const fail = () => Promise.resolve({ data: null, error });
+  return {
+    auth: {
+      getSession: () => Promise.resolve({ data: { session: null }, error: null }),
+      onAuthStateChange: () => ({ data: { subscription: { unsubscribe() {} } } }),
+      getUser: () => Promise.resolve({ data: { user: null }, error: null }),
+      signInWithPassword: fail,
+      signUp: fail,
+      signInWithOtp: fail,
+      verifyOtp: fail,
+      resetPasswordForEmail: fail,
+      updateUser: fail,
+      signOut: () => Promise.resolve({ error: null }),
+    },
+  } as unknown as ReturnType<typeof createClient<Database>>;
 }
 
 let _supabase: ReturnType<typeof createSupabaseClient> | undefined;
